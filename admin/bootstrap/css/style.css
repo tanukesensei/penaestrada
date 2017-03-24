@@ -1,0 +1,23 @@
+#form-control-textarea{
+
+	height: 200px;
+}
+#inputEmail3{
+	margin-top: 10px;
+	height: 30px;
+}
+.icone{
+
+	width: 35px;
+	height: 35px;
+}
+
+@font-face {
+    font-family: "AvantGarde";
+    src: url("../fonts/AvantGardeBookBT.ttf");
+}
+
+@font-face {
+    font-family: "AvantGarde";
+    src: url("../fonts/AvantGardeBkBT.ttf");
+}

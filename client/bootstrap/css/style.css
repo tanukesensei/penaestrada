@@ -1,0 +1,35 @@
+#form-control-textarea{
+
+	height: 200px;
+}
+#inputEmail3{
+	margin-top: 10px;
+	height: 30px;
+}
+.icone{
+
+	width: 35px;
+	height: 30px;
+}
+
+.iconepago{
+
+	width: 45px;
+	height: 45px;
+}
+#cliente_h1{
+	font-size: 18px;
+	font-weight: bold;
+	color: #0099CC;
+	  
+}
+
+@font-face {
+    font-family: "AvantGarde";
+    src: url(".../fonts/AvantGardeBookBT.ttf");
+}
+
+@font-face {
+    font-family: "AvantGarde";
+    src: url(".../fonts/AvantGardeBkBT.ttf");
+}
