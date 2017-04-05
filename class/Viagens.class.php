@@ -24,6 +24,58 @@ class Viagens
 
   IVG: Imagens de Viagens de Grupo.
   */
+
+  public function __construct()
+  {
+    $this->bd = new BD();
+    $this->tabela = "viagens";
+  }
+
+  public function __destruct()
+  {
+     unset($this->bd);
+  }
+
+  public function __get($key)
+  {
+     return $this->$key;
+  }
+
+  public function __set($key, $value)
+  {
+     $this->$key = $value;
+  }
+
+  public function CreateViagens()
+  {
+    # code...
+  }
+
+  public function ListViagens()
+  {
+    # code...
+  }
+
+  public function ListViagensByID()
+  {
+    # code...
+  }
+
+  public function UpdateViagens()
+  {
+    # code...
+  }
+
+  public function DeleteViagens()
+  {
+    # code...
+  }
+
+  public function EditViagens($value='')
+  {
+
+  }
+
 }
 
  ?>
