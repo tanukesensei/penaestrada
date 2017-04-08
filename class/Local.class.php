@@ -28,7 +28,9 @@ class Local
 
   public function CreateLocal()
   {
-    # code...
+    $sql     = "INSERT INTO $this->tabela (data) VALUES('$this->data')";
+    $retorno = pg_query($sql);
+    return $retorno;
   }
 
   public function ListLocal()
