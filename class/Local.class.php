@@ -1,5 +1,7 @@
 <?php
 
+include_once 'Carrega.class.php';
+
 class Local
 {
   private $id;
@@ -8,7 +10,6 @@ class Local
   public function __construct()
   {
     $this->bd = new BD();
-    $this->tabela = "";
   }
 
   public function __destruct()
@@ -28,9 +29,9 @@ class Local
 
   public function CreateLocal()
   {
-    $sql     = "INSERT INTO $this->tabela (data) VALUES('$this->data')";
-    $retorno = pg_query($sql);
-    return $retorno;
+    $sql    = "INSERT INTO local (data) VALUES ('$this->data')";
+    $return = pg_query($sql);
+    return $return;
   }
 
   public function ListLocal()

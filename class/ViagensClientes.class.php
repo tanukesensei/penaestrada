@@ -1,5 +1,7 @@
 <?php
 
+include_once 'Carrega.class.php';
+
 class ViagensClientes
 {
   private $idCliente;

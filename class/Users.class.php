@@ -1,5 +1,6 @@
 <?php
-include_once "BD.class.php";
+
+include_once 'Carrega.class.php';
 
 class Users
 {
