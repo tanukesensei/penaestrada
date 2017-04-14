@@ -35,12 +35,26 @@
 
     public function CreateClass()
     {
-      # code...
+      $sql    = "INSERT INTO  () VALUES ('$this->')";
+      $return = pg_query($sql);
+      return $return;
     }
 
     public function ListClass()
     {
-      # code...
+      $sql       = "SELECT * FROM  ORDER BY id DESC";
+      $resultado = pg_query($sql);
+      $return    = NULL;
+
+      while ($registro = pg_fetch_assoc($resultado))
+      {
+        $object            = new ();
+        $object->id        = $registro["id"];
+        $object-> = $registro[""];
+
+        $return[] = $object;
+      }
+      return $return;
     }
 
     public function ListClassByID()
@@ -50,17 +64,34 @@
 
     public function UpdateClass()
     {
-      # code...
+      $return = NULL;
+      $sql    = "UPDATE  SET  ='$this->' WHERE id = $this->id";
+      $return = pg_query($sql);
+      return $return;
     }
 
     public function DeleteClass()
     {
-      # code...
+      $sql    = "DELETE FROM  WHERE id = $this->id";
+      $return = pg_query($sql);
+      return $return;
     }
 
     public function EditClass($value='')
     {
+      $sql       = "SELECT * FROM  WHERE id = $id ";
+      $resultado = pg_query($sql);
+      $return    = NULL;
 
+      while ($registro = pg_fetch_assoc($resultado))
+      {
+        $object            = new ();
+        $object->id        = $registro["id"];
+        $object-> = $registro[""];
+
+        $return = $object;
+      }
+      return $return;
     }
 
   }
