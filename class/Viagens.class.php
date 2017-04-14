@@ -6,6 +6,7 @@ class Viagens
 {
   private $id;
   private $categoria;
+  private $titulo;
   private $descricao;
   private $inclui;
   private $levar;
@@ -15,7 +16,7 @@ class Viagens
   private $dicas;
   private $valor;
   private $promocao;
-  private $local_grupo;
+  private $cidade;
   private $empresa;
   private $ivg;
 
@@ -30,7 +31,6 @@ class Viagens
   public function __construct()
   {
     $this->bd = new BD();
-    $this->tabela = "viagens";
   }
 
   public function __destruct()
@@ -50,12 +50,42 @@ class Viagens
 
   public function CreateViagens()
   {
-    # code...
+    $sql    = "INSERT INTO viagens ( titulo, categoria, descricao, oqueinclui, oquelevar, roteiro, itinerario, vagas, dicas, valor, promocao, cidade, empresa, imagens_viagens_grupos)
+                      VALUES ('$this->titulo',
+                              '$this->categoria',
+                              '$this->descricao',
+                              '$this->roteiro',
+                              '$this->inclui',
+                              '$this->levar',
+                              '$this->itinerario',
+                              '$this->vagas',
+                              '$this->dicas',
+                              '$this->valor',
+                              '$this->promocao',
+                              '$this->cidade',
+                              '$this->empresa',
+                              '$this->ivg')";
+    $return = pg_query($sql);
+    return $return;
   }
 
   public function ListViagens()
   {
-    # code...
+    $sql       = "SELECT * FROM viagens ORDER BY id DESC";
+    $resultado = pg_query($sql);
+    $return    = NULL;
+
+    while ($registro = pg_fetch_assoc($resultado))
+    {
+      $object             = new Viagens();
+      $object->id         = $registro["id"];
+      $object->empresa    = $registro["empresa"];
+      $object->titulo     = $registro["titulo"];
+      $object->itinerario = $registro["itinerario"];
+
+      $return[] = $object;
+    }
+    return $return;
   }
 
   public function ListViagensByID()
@@ -65,17 +95,61 @@ class Viagens
 
   public function UpdateViagens()
   {
-    # code...
+    $return = NULL;
+    $sql    = "UPDATE viagens SET titulo                = '$this->titulo',
+                                  empresa               = '$this->empresa',
+                                  itinerario            = '$this->itinerario',
+                                  categoria             = '$this->categoria',
+                                  descricao             = '$this->descricao',
+                                  roteiro               = '$this->roteiro',
+                                  oqueinclui            = '$this->inclui',
+                                  oquelevar             = '$this->levar',
+                                  vagas                 = '$this->vagas',
+                                  dicas                 = '$this->dicas',
+                                  valor                 = '$this->valor',
+                                  promocao              = '$this->promocao',
+                                  cidade                = '$this->cidade',
+                                  imagens_viagens_grupo = '$this->ivg'
+                              WHERE id = $this->id";
+    $return = pg_query($sql);
+    return $return;
   }
 
   public function DeleteViagens()
   {
-    # code...
+    $sql    = "DELETE FROM viagens WHERE id = $this->id";
+    $return = pg_query($sql);
+    return $return;
   }
 
-  public function EditViagens($value='')
+  public function EditViagens($id='')
   {
+    $sql       = "SELECT * FROM viagens WHERE id = $id ";
+    $resultado = pg_query($sql);
+    $return    = NULL;
 
+    while ($registro = pg_fetch_assoc($resultado))
+    {
+      $object             = new Viagens();
+      $object->id         = $registro["id"];
+      $object->titulo     = $registro["titulo"];
+      $object->itinerario = $registro["itinerario"];
+      $object->categoria  = $registro["categoria"];
+      $object->descricao  = $registro["descricao"];
+      $object->roteiro    = $registro["roteiro"];
+      $object->inclui     = $registro["oqueinclui"];
+      $object->levar      = $registro["oquelevar"];
+      $object->vagas      = $registro["vagas"];
+      $object->dicas      = $registro["dicas"];
+      $object->valor      = $registro["valor"];
+      $object->promocao   = $registro["promocao"];
+      $object->cidade     = $registro["cidade"];
+      $object->empresa    = $registro["empresa"];
+      $object->ivg        = $registro["imagens_viagens_grupo"];
+
+      $return = $object;
+    }
+    return $return;
   }
 
 }
