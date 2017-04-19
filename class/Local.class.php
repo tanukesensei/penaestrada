@@ -29,14 +29,14 @@ class Local
 
   public function CreateLocal()
   {
-    $sql    = "INSERT INTO local (data) VALUES ('$this->data')";
+    $sql    = "INSERT INTO local_grupo (data) VALUES ('$this->data')";
     $return = pg_query($sql);
     return $return;
   }
 
   public function ListLocal()
   {
-    $sql       = "SELECT * FROM local ORDER BY id DESC";
+    $sql       = "SELECT * FROM local_grupo ORDER BY id DESC";
     $resultado = pg_query($sql);
     $return    = NULL;
 
@@ -59,21 +59,21 @@ class Local
   public function UpdateLocal()
   {
     $return = NULL;
-    $sql    = "UPDATE local SET  data ='$this->data' WHERE id = $this->id";
+    $sql    = "UPDATE local_grupo SET  data ='$this->data' WHERE id = $this->id";
     $return = pg_query($sql);
     return $return;
   }
 
   public function DeleteLocal()
   {
-    $sql    = "DELETE FROM local WHERE id = $this->id";
+    $sql    = "DELETE FROM local_grupo WHERE id = $this->id";
     $return = pg_query($sql);
     return $return;
   }
 
   public function EditLocal($id='')
   {
-    $sql       = "SELECT * FROM local WHERE id = $id ";
+    $sql       = "SELECT * FROM local_grupo WHERE id = $id ";
     $resultado = pg_query($sql);
     $return    = NULL;
 
