@@ -1,5 +1,7 @@
 <?php
 
+include_once 'Carrega.class.php';
+
 class ImgViagens
 {
   private $id;
@@ -11,7 +13,6 @@ class ImgViagens
   public function __construct()
   {
     $this->bd = new BD();
-    $this->tabela = "imagens_viagens_grupo";
   }
 
   public function __destruct()
@@ -31,12 +32,27 @@ class ImgViagens
 
   public function CreateImgViagens()
   {
-    # code...
+    $sql    = "INSERT INTO imagens_viagens (foto, imagens_viagens_grupo) VALUES ('$this->foto', '$this->ivg')";
+    $return = pg_query($sql);
+    return $return;
   }
 
   public function ListImgViagens()
   {
-    # code...
+    $sql       = "SELECT * FROM imagens_viagens ORDER BY id DESC";
+    $resultado = pg_query($sql);
+    $return    = NULL;
+
+    while ($registro = pg_fetch_assoc($resultado))
+    {
+      $object       = new ImgViagens();
+      $object->id   = $registro["id"];
+      $object->foto = $registro["foto"];
+      $object->ivg  = $registro["imagens_viagens_grupo"];
+
+      $return[] = $object;
+    }
+    return $return;
   }
 
   public function ListImgViagensByID()
@@ -46,17 +62,35 @@ class ImgViagens
 
   public function UpdateImgViagens()
   {
-    # code...
+    $return = NULL;
+    $sql    = "UPDATE imagens_viagens SET foto ='$this->foto', imagens_viagens_grupo ='$this->ivg' WHERE id = $this->id";
+    $return = pg_query($sql);
+    return $return;
   }
 
   public function DeleteImgViagens()
   {
-    # code...
+    $sql    = "DELETE FROM imagens_viagens WHERE id = $this->id";
+    $return = pg_query($sql);
+    return $return;
   }
 
   public function EditImgViagens($value='')
   {
+    $sql       = "SELECT * FROM imagens_viagens WHERE id = $id ";
+    $resultado = pg_query($sql);
+    $return    = NULL;
 
+    while ($registro = pg_fetch_assoc($resultado))
+    {
+      $object       = new ImgViagens();
+      $object->id   = $registro["id"];
+      $object->foto = $registro["foto"];
+      $object->ivg  = $registro["imagens_viagens_grupo"];
+
+      $return = $object;
+    }
+    return $return;
   }
 
 }

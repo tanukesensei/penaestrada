@@ -1,5 +1,7 @@
 <?php
 
+include_once 'Carrega.class.php';
+
 class ViagensClientes
 {
   private $idCliente;
@@ -56,7 +58,7 @@ class ViagensClientes
 
   public function EditViagensClientes($value='')
   {
-
+    
   }
 
 }
