@@ -80,6 +80,7 @@ class Viagens
       $object             = new Viagens();
       $object->id         = $registro["id"];
       $object->empresa    = $registro["empresa"];
+      $object->cidade     = $registro["cidade"];
       $object->titulo     = $registro["titulo"];
       $object->itinerario = $registro["itinerario"];
 
@@ -91,6 +92,14 @@ class Viagens
   public function ListViagensByID()
   {
     # code...
+  }
+
+  public function ListViagensByCidade()
+  {
+    //Caso o sistema possua uma pesquisa com sistema diferente ao Datatables
+    $sql       = "SELECT * FROM viagens v WHERE v.cidade ILIKE '%$search%' ORDER BY v.id DESC";
+    $resultado = pg_query($sql);
+    $return    = NULL;
   }
 
   public function UpdateViagens()
